@@ -68,6 +68,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // to
 // *** finish ***
 // below.
+
+  var randomCategoryShortName = getRandomCategoryShortName(categories);
+
 // We changed this code to retrieve all categories from the server instead of
 // simply requesting home HTML snippet. We now also have another function
 // called buildAndShowHomeHTML that will receive all the categories from the server
@@ -80,6 +83,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 // *** start ***
 // On first load, show home view
+  var finalHtml = insertProperty(html, "randomCategoryShortName", randomCategoryShortName);
+
 showLoading("#main-content");
 $ajaxUtils.sendGetRequest(
   allCategoriesUrl,
@@ -103,6 +108,12 @@ function buildAndShowHomeHTML (categories) {
       // variable's name implies it expects.
       // var chosenCategoryShortName = ....
 
+      function getRandomCategoryShortName(categories) {
+  var randomIndex = Math.floor(Math.random() * categories.length);
+  return categories[randomIndex].short_name;
+}
+
+
 
       // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
       // chosen category from STEP 2. Use existing insertProperty function for that purpose.
@@ -117,11 +128,21 @@ function buildAndShowHomeHTML (categories) {
       //
       // var homeHtmlToInsertIntoMainPage = ....
 
+      function getRandomCategoryShortName(categories) {
+  var randomIndex = Math.floor(Math.random() * categories.length);
+  return categories[randomIndex].short_name;
+}
+
+
 
       // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
       // Use the existing insertHtml function for that purpose. Look through this code for an example
       // of how to do that.
       // ....
+function getRandomCategoryShortName(categories) {
+  var randomIndex = Math.floor(Math.random() * categories.length);
+  return categories[randomIndex].short_name;
+}
 
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
